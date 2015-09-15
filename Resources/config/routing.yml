@@ -1,0 +1,3 @@
+cirici_match_against_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: CiriciMatchAgainstBundle:Default:index }

@@ -1,0 +1,7 @@
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                dql:
+                    string_functions:
+                        MATCH_AGAINST: Cirici\MatchAgainstBundle\Extension\Doctrine\MatchAgainst
