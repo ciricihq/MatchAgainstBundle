@@ -4,4 +4,4 @@ doctrine:
             default:
                 dql:
                     string_functions:
-                        MATCH_AGAINST: Cirici\MatchAgainstBundle\Extension\Doctrine\Query\Mysql\MatchAgainst
+                        MATCH_AGAINST: Cirici\MatchAgainstBundle\Extension\Doctrine\Query\Sqlite\MatchAgainst

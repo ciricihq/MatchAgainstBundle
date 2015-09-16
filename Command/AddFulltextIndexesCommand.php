@@ -21,8 +21,8 @@ class AddFulltextIndexesCommand extends ContainerAwareCommand
 {
     public function configure()
     {
-        $this->setName('project:build-fulltext');
-        $this->setDescription('Create the fields to perform fulltext search');
+        $this->setName('matchagainst:build-fulltext');
+        $this->setDescription('Create the search index to perform FULLTEXT');
     }
 
     public function execute(InputInterface $input, OutputInterface $output)
@@ -31,8 +31,9 @@ class AddFulltextIndexesCommand extends ContainerAwareCommand
 
         $dialog = $this->getDialogHelper();
 
-        $dialog->writeSection($output, 'Creating links for the table X');
-        $connection->query("ALTER TABLE `xxx`.`Address` ADD FULLTEXT `search_indexes` ( `name` , `street` , `postal` , `city` , `state` , `country` )");
+        $database = $connection->getDatabase();
+        $dialog->writeSection($output, 'Creating index for the table search_text_index ');
+        $connection->query("ALTER TABLE `$database`.`search_text_index` ADD FULLTEXT `search_indexes` ( `content` )");
 
         $dialog->writeSection($output, 'Finished.');
     }

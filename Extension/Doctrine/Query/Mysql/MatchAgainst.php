@@ -1,20 +1,10 @@
 <?php
-namespace Cirici\MatchAgainstBundle\Extension\Doctrine\MatchAgainst;
-
-/**
- * MatchAgainst
- *
- * Definition for MATCH AGAINST MySQL instruction to be used in DQL Queries
- *
- * Usage: MATCH_AGAINST(column[, column, ...], :text ['SEARCH MODE'])
- *
- * @author Jérémy Hubert <jeremy.hubert@infogroom.fr>
- * using work of http://groups.google.com/group/doctrine-user/browse_thread/thread/69d1f293e8000a27
- */
-namespace xxx\yyyBundle\Extension\Doctrine;
+namespace Cirici\MatchAgainstBundle\Extension\Doctrine\Query\Mysql;
 
 use Doctrine\ORM\Query\Lexer;
 use Doctrine\ORM\Query\AST\Functions\FunctionNode;
+use Doctrine\ORM\Query\SqlWalker;
+use Doctrine\ORM\Query\Parser;
 
 /**
  * "MATCH_AGAINST" "(" {StateFieldPathExpression ","}* InParameter {Literal}? ")"
@@ -25,9 +15,8 @@ class MatchAgainst extends FunctionNode {
     public $needle;
     public $mode;
 
-    public function parse(\Doctrine\ORM\Query\Parser $parser)
+    public function parse(Parser $parser)
     {
-
         $parser->match(Lexer::T_IDENTIFIER);
         $parser->match(Lexer::T_OPEN_PARENTHESIS);
 
@@ -46,7 +35,7 @@ class MatchAgainst extends FunctionNode {
         $parser->match(Lexer::T_CLOSE_PARENTHESIS);
     }
 
-    public function getSql(\Doctrine\ORM\Query\SqlWalker $sqlWalker)
+    public function getSql(SqlWalker $sqlWalker)
     {
         $haystack = null;
 
@@ -59,10 +48,11 @@ class MatchAgainst extends FunctionNode {
         $query = "MATCH(" . $haystack .
             ") AGAINST (" . $this->needle->dispatch($sqlWalker);
 
-        if($this->mode) {
-            $query .= " " . $this->mode->dispatch($sqlWalker) . " )";
+        if($this->mode && $this->mode->value != "") {
+            // $query .= " " . trim($this->mode->dispatch($sqlWalker), "'") . ")";
+            $query .= " " . trim($this->mode->dispatch($sqlWalker), "'") . " )";
         } else {
-            $query .= " )";
+            $query .= ")";
         }
 
         return $query;

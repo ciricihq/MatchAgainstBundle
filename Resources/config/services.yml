@@ -1,7 +1,8 @@
 parameters:
-#    cirici_match_against.example.class: Cirici\MatchAgainstBundle\Example
+    cirici_match_against.text_manager.class: Cirici\MatchAgainstBundle\Model\TextSearchManager
 
 services:
-#    cirici_match_against.example:
-#        class: %cirici_match_against.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    cirici_match_against.text_manager:
+        class: %cirici_match_against.text_manager.class%
+        calls:
+            - [ setEm, ['@doctrine.orm.entity_manager'] ]
