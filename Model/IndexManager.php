@@ -19,13 +19,31 @@ class IndexManager
         $index->setForeignId($entity->getId());
         $index->setModel(get_class($entity));
         $index->setField($field);
-        $gfield = 'get' . ucfirst($field);
-        $content = $entity->{$gfield}();
-        $index->setContent($content);
+        $index->setContent($this->getSelectedContent($entity, $field));
 
         if ($index->getContent()) {
             $this->em->persist($index);
             $this->em->flush();
         }
+    }
+
+    public function updateIndex($entity)
+    {
+        $index = $this->em
+            ->getRepository('Cirici\MatchAgainstBundle\Entity\SearchTextIndex')
+            ->findOneBy(array('foreignId' => $entity->getId()))
+        ;
+        $index->setContent($this->getSelectedContent($entity, $index->getField()));
+        $this->em->persist($index);
+        $this->em->flush();
+
+    }
+
+    private function getSelectedContent($entity, $field)
+    {
+        $gfield = 'get' . ucfirst($field);
+        $content = $entity->{$gfield}();
+
+        return $content;
     }
 }

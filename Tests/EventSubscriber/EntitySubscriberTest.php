@@ -30,9 +30,22 @@ class EntitySubscriberTest extends WebTestCase
     public function testPostPersist()
     {
         $organization = new Organization();
+        $organization->setName("Lorem Ipsum");
         $organization->setExistingNifs(0);
         $organization->setExistingNames(0);
         $this->em->persist($organization);
         $this->em->flush();
+
+        $index = $this->em->getRepository('Cirici\MatchAgainstBundle\Entity\SearchTextIndex')->findOneBy(array('foreignId' => $organization->getId()));
+
+        $this->assertEquals(1, count($index));
+
+        $organization->setName("Chiquito Ipsum part 2");
+        $this->em->persist($organization);
+        $this->em->flush();
+
+        $index = $this->em->getRepository('Cirici\MatchAgainstBundle\Entity\SearchTextIndex')->findOneBy(array('foreignId' => $organization->getId()));
+        $this->assertEquals(1, count($index));
+        $this->assertEquals($organization->getName(), $index->getContent());
     }
 }
