@@ -1,8 +1,14 @@
 parameters:
     cirici_match_against.text_manager.class: Cirici\MatchAgainstBundle\Model\TextSearchManager
+    cirici_match_against.index_manager.class: Cirici\MatchAgainstBundle\Model\IndexSearchManager
 
 services:
     cirici_match_against.text_manager:
         class: %cirici_match_against.text_manager.class%
+        calls:
+            - [ setEm, ['@doctrine.orm.entity_manager'] ]
+
+    cirici_match_against.index_manager:
+        class: %cirici_match_against.index_manager.class%
         calls:
             - [ setEm, ['@doctrine.orm.entity_manager'] ]
