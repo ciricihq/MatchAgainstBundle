@@ -36,7 +36,16 @@ class IndexManager
         $index->setContent($this->getSelectedContent($entity, $index->getField()));
         $this->em->persist($index);
         $this->em->flush();
+    }
 
+    public function removeIndex($entity)
+    {
+        $index = $this->em
+            ->getRepository('Cirici\MatchAgainstBundle\Entity\SearchTextIndex')
+            ->findOneBy(array('foreignId' => $entity->getId()))
+        ;
+        $this->em->remove($index);
+        $this->em->flush();
     }
 
     private function getSelectedContent($entity, $field)

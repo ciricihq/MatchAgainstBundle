@@ -47,5 +47,10 @@ class EntitySubscriberTest extends WebTestCase
         $index = $this->em->getRepository('Cirici\MatchAgainstBundle\Entity\SearchTextIndex')->findOneBy(array('foreignId' => $organization->getId()));
         $this->assertEquals(1, count($index));
         $this->assertEquals($organization->getName(), $index->getContent());
+
+        $id = $organization->getId();
+        $this->em->remove($organization);
+        $index = $this->em->getRepository('Cirici\MatchAgainstBundle\Entity\SearchTextIndex')->findOneBy(array('foreignId' => $id));
+        $this->assertEquals(0, count($index));
     }
 }
