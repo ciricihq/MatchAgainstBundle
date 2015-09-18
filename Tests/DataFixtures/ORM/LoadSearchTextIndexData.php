@@ -14,7 +14,17 @@ class LoadSearchTextIndexData implements FixtureInterface
     public function load(ObjectManager $manager)
     {
         $this->addSearchTextIndex($manager, 1, 'Test\NamespaceBundle\Entity\TestEntity', 'name', 'Lorem Ipsum Amet Test');
+        $this->addSearchTextIndex($manager, 1, 'Test\NamespaceBundle\Entity\TestEntity', 'name', 'Lorem Jon Amet Test');
+        $this->addSearchTextIndex($manager, 1, 'Test\NamespaceBundle\Entity\TestEntity', 'name', 'Lorem Ipsum Amet Test');
+        $this->addSearchTextIndex($manager, 1, 'Test\NamespaceBundle\Entity\TestEntity', 'name', 'Lorem Ipsum Amet Test');
+        $this->addSearchTextIndex($manager, 1, 'Test\NamespaceBundle\Entity\TestEntity', 'name', 'Uniquename');
+        $this->addSearchTextIndex($manager, 1, 'Test\NamespaceBundle\Entity\TestEntity', 'name', 'Uniquename');
+        $this->addSearchTextIndex($manager, 1, 'Test\NamespaceBundle\Entity\TestEntity', 'name', 'Lorem Ipsum Amet Test');
+        $this->addSearchTextIndex($manager, 1, 'Test\NamespaceBundle\Entity\TestEntity', 'name', 'Lorem Ipsum Amet Test');
+        $this->addSearchTextIndex($manager, 1, 'Test\NamespaceBundle\Entity\TestEntity', 'name', 'Jon Ipsum Amet Test');
         $this->addSearchTextIndex($manager, 1, 'Cirici\MaratoBundle\Entity\Organization', 'name', 'Lorem Ipsum Amet Test');
+        $this->addSearchTextIndex($manager, 1, 'Cirici\MaratoBundle\Entity\Organization', 'name', 'Lorem Ipsum Amet Test');
+        $this->addSearchTextIndex($manager, 1, 'Cirici\MaratoBundle\Entity\Organization', 'name', 'lorem Test Jon Amet Test');
     }
 
     public function addSearchTextIndex($manager, $foreign, $model, $field, $content)

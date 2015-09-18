@@ -36,7 +36,7 @@ class TextSearchManagerTest extends WebTestCase
     {
         // Those tests only will work with mysql database
         if ($this->em->getConnection()->getDriver()->getName() === 'pdo_mysql') {
-            $ids = $this->textsearchmanager->findSimilarsByScore('lorem', 'Test\NamespaceBundle\Entity\TestEntity', 'name', 0.8);
+            $ids = $this->textsearchmanager->findSimilarsByScore('Uniquename', 'Test\NamespaceBundle\Entity\TestEntity', 'name', 0.8);
 
             $this->assertTrue(is_array($ids));
 
