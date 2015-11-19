@@ -30,3 +30,11 @@ Make a query:
       ->setParameter('score', $score)
   ;
 ```
+
+License
+-------
+
+Licensed under the GNU GPL 2.0 license. Check out the `LICENSE` file for more
+details.
+
+Copyright 2015 &copy; [Cirici New Media](http://cirici.com)
