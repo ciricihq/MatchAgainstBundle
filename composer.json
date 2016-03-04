@@ -3,7 +3,7 @@
     "type": "symfony-bundle",
     "description": " A search bundle for symfony, using MySQL FULLTEXT MATCH AGAINST",
     "keywords": ["symfony","symfony2","mysql","full-text","match-against"],
-    "license": "GPLv2",
+    "license": "GPL-2.0",
     "authors": [
         {
             "name": "Cirici New Media",
