@@ -1,0 +1,28 @@
+{
+    "name": "ciricihq/match-against-bundle",
+    "type": "symfony-bundle",
+    "description": " A search bundle for symfony, using MySQL FULLTEXT MATCH AGAINST",
+    "keywords": ["symfony","symfony2","mysql","full-text","match-against"],
+    "license": "GPLv2",
+    "authors": [
+        {
+            "name": "Cirici New Media",
+            "email": "info@cirici.com",
+            "homepage": "http://cirici.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Genar Trias",
+            "email": "genar@cirici.com",
+            "homepage": "http://genar.me/"
+        }
+    ],
+    "require": {
+        "php": ">=5.6"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": { "Cirici\\MatchAgainstBundle\\": "" }
+    }
+}
