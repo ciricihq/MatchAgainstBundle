@@ -3,6 +3,13 @@ MatchAgainstBundle
 
 Based on https://gist.github.com/ZeBigDuck/1234419
 
+Installing
+----------
+
+```bash
+composer require ciricihq/match-against-bundle
+```
+
 Usage
 -----
 
